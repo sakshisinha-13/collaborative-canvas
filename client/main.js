@@ -250,7 +250,11 @@
       btnCreate.textContent = 'Creating...';
       msgBox.textContent = 'Creating private room...';
       try {
-        const resp = await fetch('/create-room');
+        const SERVER_URL = window.__SERVER_URL__ || '';
+const resp = await fetch(`${SERVER_URL}/create-room`, {
+  method: 'GET',
+  credentials: 'include', 
+});
         const json = await resp.json();
         if (!json || !json.ok) {
           msgBox.textContent = 'Failed to create room. Try again.';
