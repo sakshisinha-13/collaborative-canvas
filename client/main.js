@@ -252,8 +252,7 @@
       try {
         const SERVER_URL = window.__SERVER_URL__ || '';
 const resp = await fetch(`${SERVER_URL}/create-room`, {
-  method: 'GET',
-  credentials: 'include', 
+  method: 'GET', 
 });
         const json = await resp.json();
         if (!json || !json.ok) {
