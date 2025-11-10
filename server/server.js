@@ -7,7 +7,7 @@ const app = express();
 const httpSrv = http.createServer(app);
 
 const { Server } = require('socket.io');
-const socketServer = new Server(httpSrv, { cors: { origin: '*', methods: ['GET', 'POST'] } });
+const socketServer = new Server(httpSrv, { cors: { origin: 'https://collaborative-canvas-six.vercel.app', methods: ['GET', 'POST'] } });
 
 const Rooms = require('./rooms');
 const DrawingState = require('./drawing-state');
