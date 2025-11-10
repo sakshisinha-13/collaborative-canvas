@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Collaborative Canvas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- Room modal -->
+    <div id="room-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="room-modal-title">
+      <div class="modal-panel">
+        <h2 id="room-modal-title">Join or Create a Room</h2>
+        
+        <div class="modal-row">
+          <label for="invite-input">Invite URL</label>
+          <input id="invite-input" type="text" placeholder="Paste invite URL here">
+        </div>
+
+        <div class="modal-actions" style="display:flex; gap:8px; align-items:center; margin-top:12px;">
+          <button id="btn-join-link" class="btn primary">Join</button>
+          <button id="btn-create-room" class="btn">Create Private Room</button>
+        </div>
+
+        <div id="invite-area" style="display:none; margin-top:12px;">
+          <div style="display:flex; gap:8px; margin-top:6px;">
+            <input id="invite-url" type="text" readonly style="flex:1; padding:8px; border-radius:6px; border:1px solid var(--border); background:var(--control-bg)">
+            <button id="btn-copy-invite" class="btn">Copy</button>
+            <button id="btn-enter-room" class="btn primary">Enter Room</button>
+          </div>
+          <div id="invite-tip" class="modal-msg" aria-live="polite" style="margin-top:8px;"></div>
+        </div>
+
+        <div id="modal-msg" class="modal-msg" aria-live="polite" style="margin-top:10px;"></div>
+      </div>
+    </div>
+
+<header>
+    <div class="header-left">
+        <h1>Collaborative Canvas</h1>
+        <span class="header-subtitle">Real-time creative collaboration</span>
+    </div>      <div id="controls">
+        <button id="share-room" class="btn primary" title="Copy invite for current room">
+         
+          Share Room
+        </button>
+
+        <div class="tool-buttons-group">
+          <button class="tool-button active" id="brush">
+            
+            Brush
+          </button>
+
+          <button class="tool-button" id="eraser">
+            Eraser
+          </button>
+
+          <button class="tool-button" id="undo">
+            
+            Undo
+          </button>
+
+          <button class="tool-button" id="redo">
+            Redo
+          </button>
+        </div>
+
+        <div class="control-group">
+          <input type="color" id="color" value="#000000" title="Choose color">
+          <input type="range" id="size" min="1" max="40" value="4" title="Brush size">
+        </div>
+
+        <span id="status" class="status-badge">Disconnected</span>
+      </div>
+    </header>
+
+    <main>
+      <aside id="sidebar">
+        <h3>Online</h3>
+        <ul id="users"></ul>
+      </aside>
+
+      <section id="canvas-wrap">
+        <canvas id="draw-canvas"></canvas>
+        <div id="cursor-layer" aria-hidden="true"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="websocket.js"></script>
+  <script src="canvas.js"></script>
+  <script src="main.js"></script>
+  <script src="cursors.js"></script>
+</body>
+</html>
