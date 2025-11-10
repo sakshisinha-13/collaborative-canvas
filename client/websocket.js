@@ -93,7 +93,8 @@
 
       // create socket (assumes IO client available globally)
       // eslint-disable-next-line no-undef
-      _sock = io("https://collaborative-canvas-w4ug.onrender.com", ioOpts);
+      const SERVER_URL = (typeof window !== 'undefined' && window.__SERVER_URL__) ? window.__SERVER_URL__ : "https://collaborative-canvas-w4ug.onrender.com";
+_sock = io(SERVER_URL, ioOpts);
 
       _sock.on('connect', () => {
         _isConnected = true;
